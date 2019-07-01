@@ -29,3 +29,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Database ###
+derby.log
+/movies_db
+
+### FlooBits ###
+.floo
+.flooignore
+
