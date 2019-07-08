@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-@JsonIgnoreProperties(value = {"id", "created", "updated", "href"}, allowGetters = true,
+@JsonIgnoreProperties(value = {"created", "updated", "href"}, allowGetters = true,
     ignoreUnknown = true)
 public class Movie {
 
