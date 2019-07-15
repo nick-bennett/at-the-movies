@@ -63,6 +63,10 @@ public class MovieController {
       produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Movie> post(@RequestBody Movie movie) {
     repository.save(movie);
+    if (movie.getGenre() != null) {
+      UUID genreId = movie.getGenre().getId();
+      movie.setGenre(genreRepository.findById(genreId).get());
+    }
     return ResponseEntity.created(movie.getHref()).body(movie);
   }
 
@@ -78,7 +82,12 @@ public class MovieController {
     existingMovie.setGenre(movie.getGenre());
     existingMovie.setScreenwriter(movie.getScreenwriter());
     existingMovie.setTitle(movie.getTitle());
-    return repository.save(existingMovie);
+    repository.save(existingMovie);
+    if (movie.getGenre() != null) {
+      UUID genreId = movie.getGenre().getId();
+      existingMovie.setGenre(genreRepository.findById(genreId).get());
+    }
+    return existingMovie;
   }
 
   @Transactional
